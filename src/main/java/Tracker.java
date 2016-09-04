@@ -7,7 +7,6 @@ import java.util.Set;
 
 import static java.util.Collections.*;
 
-
 public class Tracker <K, V> {
     private Map<V, Set<K>> table = new HashMap<V, Set<K>>();
 
@@ -25,6 +24,8 @@ public class Tracker <K, V> {
     }
 
     public Set<K> requestTrack(V value) {
-        return unmodifiableSet(table.get(value));
+        Set<K> set = table.get(value);
+        if (set != null) return unmodifiableSet(set);
+        return Collections.emptySet();
     }
 }

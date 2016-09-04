@@ -5,10 +5,11 @@ public class StringGenerator {
     public StringGenerator() {
         random = new Random();
     }
-    public String generate(int seed) {
+    public String generate(int seed, String prefix) {
         random.setSeed(seed);
         StringBuilder stringBuilder = new StringBuilder();
-        for (int i = 0; i < 100; ++i) {
+        stringBuilder.append(prefix + "-");
+        for (int i = 0; i < 10; ++i) {
             stringBuilder.append((char) (random.nextInt(25) + 65));
         }
         return stringBuilder.toString();
