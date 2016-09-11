@@ -5,7 +5,7 @@ import java.util.Random;
 public class RequestGenerator {
     private int stringCnt;
     private int distributionMonitor[] = new int[10];
-    public void generate(Tracker<String, String> tracker, int calcCount, int stringCnt) {
+    public void generate(DependencyTracker<String, String> tracker, int calcCount, int stringCnt) {
         this.stringCnt = stringCnt;
         StringGenerator generator = new StringGenerator();
         for (int i = 0; i < calcCount; ++i) {
@@ -13,7 +13,7 @@ public class RequestGenerator {
             int n = random.nextInt(10) + 1;
             int requestCount = 11 - n;
             for (int j = 0; j < requestCount; ++j) {
-                tracker.addTrack(generator.generate(random.nextInt(stringCnt), "req"), listGenerator(n*n));
+                tracker.trackRequest(generator.generate(random.nextInt(stringCnt), "req"), listGenerator(n*n));
             }
             distributionMonitor[n - 1] += requestCount;
         }
